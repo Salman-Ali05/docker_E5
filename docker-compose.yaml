@@ -1,0 +1,42 @@
+services:
+  mysql:
+    container_name: mysql-items
+    env_file:
+      - ./mysql/.env
+    build:
+      context: ./mysql
+    volumes:
+      - ./mysql/db:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-proot"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  fastapi:
+    container_name: fastapi-items
+    depends_on:
+      mysql:
+        condition: service_healthy
+    env_file:
+      - ./fastapi/.env
+    build:
+      context: ./fastapi
+
+  burger:
+    container_name: burger-restau
+    build:
+      context: ./burger-restau
+    volumes:
+      - ./burger-restau/app:/app
+  
+  nginx:
+    container_name: reverse-proxy
+    image: nginx:latest
+    restart: always
+    ports:
+      - 80:80
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+    
