@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  backend:
+    container_name: stackover-backend
+    build: ./backend
+    working_dir: /app
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./backend:/app
+    env_file:
+      - ./backend/.env
+    networks:
+      - stack-net
+
+  frontend:
+    container_name: stackover-frontend
+    build: ./frontend
+    ports:
+      - "3000:80"
+    networks:
+      - stack-net
+
+networks:
+  stack-net:
+    driver: bridge
