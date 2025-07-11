@@ -1,0 +1,14 @@
+services:
+  frontend:
+    container_name: burger-restau
+    build: .
+    ports:
+      - "3001:80"
+    volumes:
+      - .:/app
+    networks:
+      - stack-net
+
+networks:
+  stack-net:
+    driver: bridge
