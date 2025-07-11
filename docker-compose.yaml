@@ -23,20 +23,14 @@ services:
       - ./fastapi/.env
     build:
       context: ./fastapi
-
-  burger:
-    container_name: burger-restau
-    build:
-      context: ./burger-restau
-    volumes:
-      - ./burger-restau/app:/app
   
   nginx:
     container_name: reverse-proxy
-    image: nginx:latest
     restart: always
-    ports:
-      - 80:80
+    build:
+      context: .
+      dockerfile: ./nginx/Dockerfile
     volumes:
       - ./nginx:/etc/nginx/conf.d
-    
+    ports:
+      - 80:80
