@@ -1,0 +1,20 @@
+.products_wallet{
+    background-color: transparent;
+    border-bottom: 1px solid #f3f3f3;
+    display: flex;
+    justify-content: space-between;
+}
+
+.delete_product{
+    /* background-color: blue; */
+    display: flex;
+    align-items: center;
+}
+.delete_product > button {
+    border-radius:100vh;
+    border:none;
+    cursor: pointer;
+}
+.delete_product > button:hover {
+    border : 1px solid black;
+}

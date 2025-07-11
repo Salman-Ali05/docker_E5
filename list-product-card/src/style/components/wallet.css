@@ -1,0 +1,12 @@
+h2{
+    color:hsl(14, 86%, 42%)
+}
+
+.container_wallet {
+  background-color: hsl(20, 50%, 98%);
+  width: 50%;
+  height: 60vH;
+  border-radius: 1vh;
+  padding: 1rem;
+  box-sizing: border-box;
+}
